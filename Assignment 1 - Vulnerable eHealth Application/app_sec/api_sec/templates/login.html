@@ -1,0 +1,53 @@
+{% extends "layout/base.html" %}
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100" style="min-width: 40%;">
+            <form class="login100-form validate-form" method="POST" action="/login">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="notification is-danger flash-mank">
+                    {{ messages[0] }}
+                </div>
+                {% endif %}
+                {% endwith %}
+                <span class="login100-form-title p-b-26" style="vertical-align: top;">
+                    Log In
+                </span>
+                <span class="login100-form-title p-b-48">
+                    <i class="zmdi zmdi-font"></i>
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+                    <label class="label-mank"for="Email">Email</label>
+                    <input class="input100" type="text" name="email" id="email" required>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <span class="btn-show-pass">
+                        <i class="zmdi zmdi-eye"></i>
+                    </span>
+                    <label class="label-mank"for="password">Password</label>
+                    <input class="input100" type="password" name="password" id="password" required>
+                </div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            Log In
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center p-t-115">
+                    <span class="txt1">
+                    Don’t have an account?
+                    </span>
+                    <a class="txt2" href="{{ url_for('signup') }}">
+                    Sign Up
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

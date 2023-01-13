@@ -1,0 +1,66 @@
+{% extends "layout/base.html" %}
+{% block title %}Appointments{% endblock %}
+
+{% block content %}
+<section class="page-title text-center" style="background-image:url({{ url_for('static', filename='images/background/3.jpg') }})">
+    <div class="container">
+        <div class="title-text">
+            <h1>appointments</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="{{ url_for('index') }}">home &nbsp;/</a>
+                </li>
+                <li>appointments</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section style-three pt-0 pb-0">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container text-center" style="min-height: calc(100vh - 400px); margin-left: 10%;">
+                <table class="styled-table" style="margin-right: 5%;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Doctor</th>
+                            <th>Department</th>
+                            <th>Date</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <body>
+                    {% if appointmentList is defined and appointmentList|length > 0 %}
+                        {% for entry in appointmentList %}
+                            <tr>
+                                <td>{{entry.id}}</td>
+                                <td>{{entry.doctor.name}}</td>
+                                <td>{{entry.department.name}}</td>
+                                <td>{{entry.date}}</td>
+                                <td>{{entry.message}}</td>
+                            </tr>
+                        {% endfor %}
+                    </body>
+                </table>
+                    {% else %}
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </body>
+                </table>
+                <p style="font-weight: bolder">
+                    No Appointments Created Yet
+                </p>
+                    {% endif %}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="container" style="min-height: calc(100vh - 400px); margin-left: 0; margin-right : 0;">
+                <a class="buttonPylance" href="{{ url_for('newappointment') }}">Request new appointment</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "layout/base.html" %}
+{% block title %}Appointments{% endblock %}
+
+{% block content %}
+
+<section class="page-title text-center" style="background-image:url({{ url_for('static', filename='images/background/3.jpg') }})">
+  <div class="container">
+      <div class="title-text">
+          <h1>request appointment</h1>
+          <ul class="title-menu clearfix">
+              <li>
+                  <a href="{{ url_for('index') }}">home &nbsp;/</a>
+              </li>
+              <li>
+                <a href="{{ url_for('appointments') }}">appointment &nbsp;/</a>
+              </li>
+              <li>request</li>
+          </ul>
+      </div>
+  </div>
+</section>
+
+<section class="section style-three pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 order-1 order-lg-0">
+        <div class="contact-area style-two pl-0 pr-0 pr-lg-4">
+          <div class="section-title">
+            <h3>Request <span>Appointment</span></h3>
+          </div>
+          <form name="contact_form" class="default-form contact-form" action="#" method="post">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="department" required>
+                    <option value="">Select Department</option>
+                    {% for department in departments %}
+                    <option value="{{department.name}}">{{department.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control" name="doctor" required>
+                    <option value="">Select Doctor</option>
+                    {% for doctor in doctors %}
+                    <option value="{{doctor.name}}">{{doctor.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input class="form-control" type="text" name="date" placeholder="Date" required="" id="datepicker" autocomplete="off">
+                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea class="form-control" name="message" placeholder="Your Message" required=""></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn-style-one">submit now</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-6 mb-4 mb-lg-0 order-0 order-lg-1">
+        <div class="appointment-image-holder ml-0 ml-lg-4">
+          <figure>
+            <img loading="lazy" class="w-100" src="{{ url_for('static', filename='images/background/appoinment.jpg')}}" alt="Appointment">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
